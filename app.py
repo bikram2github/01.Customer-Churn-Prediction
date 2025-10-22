@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import joblib
 
+
+@st.cache_resource
 def load_model():
     model = joblib.load("model.pkl")
     scaler = joblib.load("scaler_churn.pkl")
@@ -14,6 +16,7 @@ st.title("Customer Churn Prediction")
 st.write("Enter customer details to predict if they will leave or stay.")
 
 
+@st.cache_data
 def user_input_features(credit_score, geography, gender, age, tenure, balance, num_of_products, has_cr_card, is_active_member, estimated_salary):
     credit_score = credit_score
     if geography == "France":
